@@ -1,4 +1,5 @@
-# iep-quality-website
+# rp-cr-converter
+Convert the data read by card reader to date and UIN. [https://rijn.github.io/rp-cr-converter/](https://rijn.github.io/rp-cr-converter/)
 
 - development
 
