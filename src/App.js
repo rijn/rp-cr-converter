@@ -53,16 +53,16 @@ class App extends Component {
 
   _convert = text => {
     let data = [];
-    let regex = /^;\d{4}(\d{9})/g;
     _(_.split(text, '\n')).compact().each(line => {
       if (/\d{1}\/\d{2}\/\d{2}/g.test(line)) {
         let date = moment(line, 'YYYY/MM/DD');
         data.push({ date, dateFormat: date.format('YYYY/MM/DD') });
-      } else {
-        if (regex.test(line)) {
-          let r = /^;\d{4}(\d{9})/g.exec(line);
-          data[data.length - 1].uin = r[1];
-        }
+      } else if (/^;\d{4}(\d{9})/g.test(line)) {
+        let r = /^;\d{4}(\d{9})/g.exec(line);
+        data[data.length - 1].uin = r[1];
+      } else if (/^%B\d{4}(\d{9})/g.test(line)) {
+        let r = /^%B\d{4}(\d{9})/g.exec(line);
+        data[data.length - 1].uin = r[1];
       }
     });
     let dateMap = _(data)
